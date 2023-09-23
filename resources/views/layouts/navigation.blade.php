@@ -100,7 +100,6 @@
 </nav> --}}
 
 
-<!-- ====== Navbar Section Start -->
 <header
   x-data="{navbarOpen: false}"
   class="fixed left-0 top-0 z-50 bg-white w-full flex items-center shadow-md dark:bg-slate-900 h-24"
@@ -149,4 +148,3 @@
     </div>
   </div>
 </header>
-<!-- ====== Navbar Section End -->
