@@ -22,24 +22,7 @@
             Resume-<span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">maker</span>
           </a>
 
-          <div class="flex w-1/2 justify-end content-center">
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                    @auth
-                        <a href="{{ route('resume') }}" class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out">Resume</a>
-                    @else
-                        <a href="{{ route('login') }}" class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out">Register</a>
-                        @endif
-                    @endauth
-
-                    {{-- <a href="{{ url('/terms') }}" class="ml-4 inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out">Terms</a> --}}
-
-                </div>
-            @endif
-          </div>
+          
         </div>
       </div>
 
@@ -57,7 +40,7 @@
           <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
             Resume-maker site was created to provide the opportunity to create a beautiful resume by template. Make it just right!
           </p>
-
+{{-- 
           <form class="bg-gray-900 opacity-75 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
               <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
@@ -79,7 +62,24 @@
                 Sign Up
               </button>
             </div>
-          </form>
+          </form> --}}
+          <div class="pl-3 flex space-x-4  pt-4">
+
+            @if (Route::has('login'))
+                    @auth
+                        <a href="{{ route('resume') }}" class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Resume</a>
+                    @else
+                        <a href="{{ route('login') }}" class="bg-gradient-to-r from-purple-900 to-green-900 hover:from-pink-900 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Register</a>
+                        @endif
+                    @endauth
+
+                    {{-- <a href="{{ url('/terms') }}" class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Terms</a> --}}
+
+            @endif
+        </div>
         </div>
 
         <!--Right Col-->
@@ -101,7 +101,7 @@
         <div class="w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">
           <a class="text-gray-500 no-underline hover:no-underline" href="#">B. Sanjar and O. Nikolay</a>
           - inspired by
-          <a class="text-gray-500 no-underline hover:no-underline" href="https://www.tailwindtoolbox.com">HCI</a>
+          <a class="text-gray-500 no-underline hover:no-underline" >HCI</a>
         </div>
       </div>
     </div>
