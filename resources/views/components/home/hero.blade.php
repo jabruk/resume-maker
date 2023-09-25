@@ -7,7 +7,7 @@
             <h1
               class="text-dark dark:text-gray-200 font-bold text-4xl sm:text-[42px] lg:text-[40px] xl:text-[42px] leading-snug mb-6"
             >
-              My Name is Gurban. <br/>
+              My Name is Sanjar. <br/>
               I am <span class="rounded-md text-amber-600">PHP developer</span>.
             </h1>
             <p class="text-base mb-8 max-w-[520px]">
@@ -15,7 +15,7 @@
               I'd love to have a chance to work with you, that's why I have a
               <a
                 class="text-primary font-bold no-underline hover:underline underline-offset-2 decoration-2 decoration-primary"
-                href="https://t.me/gurponika" target="_blank">Telegram </a> for offers :) <br>
+                href="https://t.me/sanjomon" target="_blank">Telegram </a> for offers :) <br>
             </p>
             <ul class="flex flex-wrap items-center">
               <li>

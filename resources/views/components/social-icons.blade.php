@@ -2,7 +2,7 @@
 
 
     <a
-      href="https://github.com/jabruk"
+      href="https://github.com/sunjarred"
       target="_blank"
       class="
          w-10
@@ -32,7 +32,7 @@
     </svg>
     </a>
     <a
-      href="https://t.me/gurponika"
+      href="https://t.me/sanjomon"
       target="_blank"
       class="
          w-10
@@ -64,7 +64,7 @@
     </svg>
     </a>
     <a
-      href="https://www.instagram.com/gurbonchik/"
+      href="https://www.linkedin.com/in/sultan-aliyev-449188228"
       target="_blank"
       class="
          w-10

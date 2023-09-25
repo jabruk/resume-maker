@@ -23,7 +23,7 @@ class Portfolio extends Component
                 'category' => ['Laravel', 'Tailwind.css'],
                 'title' => 'Full Stack app with Laravel, Tailwindcss',
                 'image' => url('/img/resume.png'),
-                'github' => 'https://github.com/jabruk/resume'
+                'github' => 'https://github.com/sunjarred/tutorial'
             ],
             
         ];
