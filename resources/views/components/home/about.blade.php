@@ -51,7 +51,7 @@
               In 2020 i have started to learn programming with <span class="text-amber-500 font-bold">Python</span>. I got the main programming base with this language.  
               But now, due to unexpected circumstances, I'm working with <span class="text-amber-500 font-bold">PHP</span> and I don't regret at all. <br />
             </p>
-            <x-button-link href="https://www.linkedin.com/in/jabruk/" variant="blue" target="_blank" class="mr-3 w-full mb-3 text-center lg:w-auto">
+            <x-button-link href="https://www.linkedin.com/in/sultan-aliyev-449188228" variant="blue" target="_blank" class="mr-3 w-full mb-3 text-center lg:w-auto">
               View my LinkedIn
             </x-button-link>
             <x-button-link href="https://hh.kz/resume/dc2a7527ff0bed8a770039ed1f47336d6f594a" variant="red" target="_blank" class="mr-3 w-full mb-3 text-center lg:w-auto">
