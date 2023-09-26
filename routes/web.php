@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/resume', function () {
+Route::get('/home', function () {
     return view('home');
-})->middleware(['auth', 'verified'])->name('resume');
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/resume', [ResumeController::class, 'edit'])->name('resume.edit');
+    Route::patch('/resume', [ResumeController::class, 'update'])->name('resume.update');
 });
 
 require __DIR__.'/auth.php';

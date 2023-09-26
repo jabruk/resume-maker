@@ -1,4 +1,5 @@
 <!-- ====== Hero Section Start -->
+@if(Auth::user() !== null)
 <div class="relative pt-[60px] lg:pt-[80px] pb-[110px] bg-white dark:bg-slate-800">
     <div class="container">
       <div class="flex flex-wrap -mx-4">
@@ -7,8 +8,8 @@
             <h1
               class="text-dark dark:text-gray-200 font-bold text-4xl sm:text-[42px] lg:text-[40px] xl:text-[42px] leading-snug mb-6"
             >
-              My Name is Sanjar. <br/>
-              I am <span class="rounded-md text-amber-600">PHP developer</span>.
+              My Name is {{ Auth::user()->name }}. <br/>
+              I am <span class="rounded-md text-amber-600">{{ Auth::user()->resume->it_position }}</span>.
             </h1>
             <p class="text-base mb-8 max-w-[520px]">
               I am a beginnerdeveloper with 1 year of experience. <br/>
@@ -84,7 +85,7 @@
     </div>
   </div>
   <!-- ====== Hero Section End -->
-
+@endif
 
 
 

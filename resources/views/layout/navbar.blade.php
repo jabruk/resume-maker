@@ -45,6 +45,10 @@
                           {{ __('Profile') }}
                       </x-dropdown-link>
 
+                      <x-dropdown-link :href="route('resume.edit')">
+                          {{ __('Edit resume') }}
+                      </x-dropdown-link>
+
                       <!-- Authentication -->
                       <form method="POST" action="{{ route('logout') }}">
                           @csrf

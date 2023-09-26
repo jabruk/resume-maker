@@ -63,16 +63,16 @@
               </button>
             </div>
           </form> --}}
-          <div class="pl-3 flex space-x-4  pt-4">
+          <div class="pl-3 flex space-x-4 m-1 pt-4">
 
             @if (Route::has('login'))
                     @auth
-                        <a href="{{ route('resume') }}" class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Resume</a>
+                        <a href="{{ route('home') }}" class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Resume</a>
                     @else
                         <a href="{{ route('login') }}" class="bg-gradient-to-r from-purple-900 to-green-900 hover:from-pink-900 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Register</a>
+                            <a href="{{ route('register') }}" class=" bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out">Register</a>
                         @endif
                     @endauth
 
