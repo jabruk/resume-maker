@@ -45,7 +45,7 @@
                           {{ __('Profile') }}
                       </x-dropdown-link>
 
-                      <x-dropdown-link :href="route('resume.edit')">
+                      <x-dropdown-link :href="route('resume.edit',Auth::user()->resume )">
                           {{ __('Edit resume') }}
                       </x-dropdown-link>
 

@@ -36,13 +36,13 @@
           <div class="mt-10 lg:mt-0">
             <span class="font-semibold text-lg text-primary mb-2 block">
                <blockquote class="text-sm text-gray-500 italic py-2 px-3 border-l-4 border-amber-500">
-                   "Everything is achievable with hard work"
+               {{Auth::user()->resume->inspire_phrase}}
                </blockquote>
             </span>
             <h2 class="font-bold text-3xl sm:text-4xl dark:text-gray-200 mb-8">
               About Me
             </h2>
-              <p class="text-base dark:text-gray-400 mb-8">
+              <!-- <p class="text-base dark:text-gray-400 mb-8">
               I have been working as a php developer only one year.
               During this year, I managed to study a lot of technologies, work on one interesting project, 
               but very often I feel that I am not even a junior developer. It's like: "The more you know the less you know" <br />
@@ -50,7 +50,8 @@
             <p class="text-base dark:text-gray-400 mb-8">
               In 2020 i have started to learn programming with <span class="text-amber-500 font-bold">Python</span>. I got the main programming base with this language.  
               But now, due to unexpected circumstances, I'm working with <span class="text-amber-500 font-bold">PHP</span> and I don't regret at all. <br />
-            </p>
+            </p> -->
+            {{Auth::user()->resume->about_me}}
             <x-button-link href="https://www.linkedin.com/in/sultan-aliyev-449188228" variant="blue" target="_blank" class="mr-3 w-full mb-3 text-center lg:w-auto">
               View my LinkedIn
             </x-button-link>

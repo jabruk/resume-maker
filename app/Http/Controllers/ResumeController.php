@@ -31,9 +31,9 @@ class ResumeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ResumeStoreRequest $request)
     {
-        //
+        // dd(123);
     }
 
     /**
@@ -58,14 +58,18 @@ class ResumeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ResumeStoreRequest $request, Resume $resume): RedirectResponse
+    public function update(ResumeStoreRequest $request, Resume $resume)
     {
-        $resume->fill($request->all());
+        $request->resume->fill($request->validated());
 
-        dd( $resume );
-        $resume->save();
-return 0;
-        // return Redirect::route('resume.edit')->with('status', 'resume-updated');
+    //    dd($request->it_position);
+
+        $request->resume->it_position = $request->it_position;
+        $request->resume->introduction_text = $request->introduction_text;
+        $request->resume->inspire_phrase = $request->inspire_phrase;
+        $request->resume->about_me = $request->about_me;
+        $request->resume->save();
+        return Redirect::route('resume.edit', $request->resume)->with('status', 'resume-updated');
     }
 
     /**

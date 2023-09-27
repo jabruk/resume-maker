@@ -22,12 +22,10 @@ class ResumeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
-            'it_position' => 'required|max:255',
-            'introduction_text' => 'required',
-            'inspire_phrase' => 'required',
-            'about_me' => 'required',
+            'it_position' => 'required|string|max:255',
+            'introduction_text' => 'required|string',
+            'inspire_phrase' => 'required|string|max:255',
+            'about_me' => 'required|string',
         ];
     }
 }

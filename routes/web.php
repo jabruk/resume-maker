@@ -28,8 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/resume', [ResumeController::class, 'edit'])->name('resume.edit');
-    Route::patch('/resume', [ResumeController::class, 'update'])->name('resume.update');
+    Route::resource('resume', ResumeController::class);
+   
 });
+
+// Route::get('/resume', [ResumeController::class, 'edit'])->name('resume.edit');
+// Route::patch('/resume', [ResumeController::class, 'update'])->name('resume.update');
 
 require __DIR__.'/auth.php';
