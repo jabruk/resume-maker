@@ -12,11 +12,16 @@
               I am <span class="rounded-md text-amber-600">{{ Auth::user()->resume->it_position }}</span>.
             </h1>
             <p class="text-base mb-8 max-w-[520px]">
-              I am a beginnerdeveloper with 1 year of experience. <br/>
+              <!-- I am a beginnerdeveloper with 1 year of experience. <br/>
               I'd love to have a chance to work with you, that's why I have a
               <a
                 class="text-primary font-bold no-underline hover:underline underline-offset-2 decoration-2 decoration-primary"
-                href="https://t.me/sanjomon" target="_blank">Telegram </a> for offers :) <br>
+                href="https://t.me/sanjomon" target="_blank">Telegram </a> 
+                
+                for offers :)
+                 <br> -->
+
+                 {{Auth::user()->resume->introduction_text}}
             </p>
             <ul class="flex flex-wrap items-center">
               <li>

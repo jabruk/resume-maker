@@ -15,4 +15,6 @@
       dark:text-gray-300'
     ])
   }}
-></textarea>
+>
+{{ $slot }}
+</textarea>

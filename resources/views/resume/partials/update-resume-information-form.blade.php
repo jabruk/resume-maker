@@ -1,50 +1,39 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
+            {{ __('Resume Information') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Update your account's resume information.") }}
         </p>
+        
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('resume.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="it_position" :value="__('Your IT Position')" />
+            <x-text-input id="it_position" name="it_position" type="text" class="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30 dark:bg-slate-800 dark:text-gray-300 border border-[f0f0f0]" :value="old('it_position', $resume->it_position)" required autofocus autocomplete="it_position" />
+            <x-input-error class="mt-2" :messages="$errors->get('it_position')" />
         </div>
 
+        <!-- <textarea class="tinyMce" name="user-bio"></textarea> -->        
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-input-label for="introduction_text" :value="__('Introduction text')" />
+            <!-- <x-text-input id="introduction_text" name="introduction_text"  class="inline-block w-full rounded-full bg-white p-2.5 leading-none text-black placeholder-indigo-900 shadow placeholder:opacity-30" :value="old('introduction_text', $resume->introduction_text)" required autocomplete="introduction_text" /> -->
+            <x-forms.textarea id="introduction_text" type="text"  placeholder="Your introduction text" name="introduction_text" rows="6"  required autocomplete="introduction_text">
+                {{$resume->introduction_text}}
+            </x-forms.textarea>
+            
+            <x-input-error class="mt-2" :messages="$errors->get('introduction_text')" />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif
+            
         </div>
 
         <div class="flex items-center gap-4">

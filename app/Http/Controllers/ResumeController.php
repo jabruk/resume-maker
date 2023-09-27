@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ResumeStoreRequest;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -50,16 +51,21 @@ class ResumeController extends Controller
     {
         return view('resume.edit', [
             'user' => $request->user(),
-            'resume' => $request->user()->resume(),
+            'resume' => $request->user()->resume,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Resume $resume)
+    public function update(ResumeStoreRequest $request, Resume $resume): RedirectResponse
     {
-        //
+        $resume->fill($request->all());
+
+        dd( $resume );
+        $resume->save();
+return 0;
+        // return Redirect::route('resume.edit')->with('status', 'resume-updated');
     }
 
     /**
