@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Image;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Resume extends Model
 {
@@ -23,11 +25,20 @@ class Resume extends Model
     ];
 
      /**
-     * Get the user that owns the phone.
+     * Get the user that owns the resume.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+       
+    
+    /**
+     * Get the resume associated with the images.
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
     }
 }
  
