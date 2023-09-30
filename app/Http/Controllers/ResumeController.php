@@ -12,6 +12,7 @@ use Illuminate\View\View;
 
 class ResumeController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -49,9 +50,19 @@ class ResumeController extends Controller
      */
     public function edit(Request $request): View
     {
+        $items = [
+            [
+                'category' => ['Laravel', 'Tailwind.css'],
+                'title' => 'Full Stack app with Laravel, Tailwindcss',
+                'image' => url('/img/resume.png'),
+                'github' => 'https://github.com/sunjarred/tutorial'
+            ],
+            
+        ];
         return view('resume.edit', [
             'user' => $request->user(),
             'resume' => $request->user()->resume,
+            'items' => $items,
         ]);
     }
 

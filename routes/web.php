@@ -24,6 +24,8 @@ Route::get('/home', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('home');
 
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -32,8 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('resume', ResumeController::class);
 
     Route::post('/image', [ImageController::class,'update'])->name('image.update');
+
    
 });
+
+Route::get('/project-editing', function () {
+    return view('components.project-editing');
+})->middleware(['auth', 'verified'])->name('project');
 
 // Route::get('/resume', [ResumeController::class, 'edit'])->name('resume.edit');
 // Route::patch('/resume', [ResumeController::class, 'update'])->name('resume.update');
