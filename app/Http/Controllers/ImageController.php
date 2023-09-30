@@ -71,9 +71,11 @@ class ImageController extends Controller
      */
     public function update(ImageUpdateRequest $request, Image $image)
     {
+
         $images = [];
+        $logos = [];
+        $i=1;
         if ($request->images){
-            $i=1;
             foreach($request->images as $key => $image)
             {
                 $imageName = 'me'.$i.'.png';  
@@ -94,14 +96,27 @@ class ImageController extends Controller
             }
         }
 
-        else if ($request->file){
-            $logoFile = $request->file;
-            $logoName = time().rand(1,99).'.'.$logoFile->extension();  
-            $logoFile->storeAs('logos', $logoName);
-            $finalImage = new Image();
-            $finalImage->image = $logoName;
-            $finalImage->resume_id = $request->resume_id;
-            $finalImage->save();
+        else if ($request->logos){
+            foreach($request->logos as $key => $logo)
+            {
+                $logoName = 'logo'.$i.'.png';  
+                File::delete(app_path().'/img/'.$logoName);
+                $logo->move('img',$logoName );
+                $logos[$key]['name'] = $logoName;
+                $logos[$key]['resume_id'] = $request->resume_id;
+                $i++;
+
+            }
+
+            foreach ($logos as $key => $image) {
+                $finalImage = new Image();
+                $finalImage->image = $image['name'];
+                $finalImage->resume_id = $image['resume_id'];
+                
+                $finalImage->save();
+            }
+
+
         }
         else if ($request->image_hero){
             $image_heroName = 'hero.png';  
