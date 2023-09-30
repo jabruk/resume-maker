@@ -44,7 +44,7 @@
           <div class="lg:text-right lg:ml-auto">
             <div class="relative inline-block z-10 pt-11 lg:pt-0">
               <img
-                src="{{ url('/img/me_hero.png') }}"
+                src="{{ url('img/hero.png') }}"
                 alt="hero"
                 class="w-4/5 lg:ml-auto rounded-[70px]"
               />

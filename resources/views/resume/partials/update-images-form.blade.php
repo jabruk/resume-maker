@@ -59,7 +59,7 @@
      
             </div>
         </form> -->
-        <form action="{{ route('image.update', ['resume_id' => $resume->id]) }}" method="POST" enctype="multipart/form-data">
+        {{-- <form action="{{ route('image.update', ['resume_id' => $resume->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
   
             <div class="mb-3">
@@ -91,5 +91,13 @@
                 <button type="submit" class="btn btn-success">Upload</button>
             </div>
        
-        </form>
+        </form> --}}
+        <div id="dropzone">
+            <form action="{{route('image.update', ['resume_id' => $resume->id]) }}" class="dropzone" id="file-upload" enctype="multipart/form-data">
+                @csrf
+                <div class="dz-message">
+                    Drag and Drop Single/Multiple Files Here<br>
+                </div>
+            </form>
+        </div>
 </section>

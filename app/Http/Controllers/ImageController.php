@@ -7,7 +7,8 @@ use App\Models\Image;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 class ImageController extends Controller
 {
     /**
@@ -72,23 +73,50 @@ class ImageController extends Controller
     {
         $images = [];
         if ($request->images){
+            $i=1;
             foreach($request->images as $key => $image)
             {
-                $imageName = time().rand(1,99).'.'.$image->extension();  
+                $imageName = 'me'.$i.'.png';  
+                File::delete(app_path().'/img/'.$imageName);
                 // $image->move(public_path('images'), $imageName);
-                $image->storeAs('images', $imageName);
+                $image->move('img',$imageName );
                 $images[$key]['name'] = $imageName;
                 $images[$key]['resume_id'] = $request->resume_id;
+                $i++;
+            }
+            
+            foreach ($images as $key => $image) {
+                $finalImage = new Image();
+                $finalImage->image = $image['name'];
+                $finalImage->resume_id = $image['resume_id'];
+                
+                $finalImage->save();
             }
         }
-    
-        foreach ($images as $key => $image) {
+
+        else if ($request->file){
+            $logoFile = $request->file;
+            $logoName = time().rand(1,99).'.'.$logoFile->extension();  
+            $logoFile->storeAs('logos', $logoName);
             $finalImage = new Image();
-            $finalImage->image = $image['name'];
-            $finalImage->resume_id = $image['resume_id'];
-            
+            $finalImage->image = $logoName;
+            $finalImage->resume_id = $request->resume_id;
             $finalImage->save();
         }
+        else if ($request->image_hero){
+            $image_heroName = 'hero.png';  
+            File::delete(app_path().'/img/'.$image_heroName);
+            $request->image_hero->move('img',$image_heroName );
+            // $image->move(public_path('img'), $image_heroName);
+            // Storage::disk('public_uploads')->put('img', $hero);
+            $finalImage = new Image();
+            $finalImage->image = $image_heroName;
+            $finalImage->resume_id = $request->resume_id;
+            $finalImage->save();
+        }
+    
+
+        
 
         $resume = Resume::findOrFail($request->resume_id);;
         return Redirect::route('resume.edit', $resume)->with('status', 'image-updated');
