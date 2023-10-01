@@ -77,9 +77,12 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(Request $request, $id)
     {
-
+        $project =  Project::with(['image', 'resume'])->find($id);
+        return view('projects-component/edit', [
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -98,7 +101,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        dd($request,$project);
     }
 
     /**

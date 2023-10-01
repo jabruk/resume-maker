@@ -21,7 +21,7 @@
       <h3 class="font-bold text-lg text-dark dark:text-gray-300 mb-4">
         {{ $title }}
       </h3>
-      <x-button-link :href="route('project.edit', ['project' => $id])"  variant="outline-primary">Edit</x-button-link>
+      <x-button-link :href="route('project.update', ['project' => $id])"  variant="outline-primary">Edit</x-button-link>
     </div>
   </div>
 </div>

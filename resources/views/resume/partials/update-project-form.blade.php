@@ -17,7 +17,7 @@
                   @if (! is_null($projects))
                   @foreach ($projects as $project)
                         <x-portfolio-item-edit 
-                                        :id="1"
+                                        :id="$project->id"
                                         :title="$project['name']"
                                         :categories="$project['category']"
                                         :image="$project->getRelation('image')->image"
