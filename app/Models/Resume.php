@@ -40,5 +40,13 @@ class Resume extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+        /**
+     * Get the resume associated with the images.
+     */
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 }
  

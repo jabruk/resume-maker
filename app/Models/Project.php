@@ -12,7 +12,7 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'categories','github', '' 
+        'name', 'category','github', '' 
     ]; 
   
     /**
@@ -20,7 +20,7 @@ class Project extends Model
      *
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
-    protected function categories(): Attribute
+    protected function category(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => json_decode($value, true),
@@ -31,8 +31,16 @@ class Project extends Model
         /**
      * Get the resume associated with the images.
      */
-    public function images()
+    public function resume()
     {
-        return $this->belongsTo(Image::class);
+        return $this->belongsTo(Resume::class);
+    }
+
+            /**
+     * Get the resume associated with the images.
+     */
+    public function image()
+    {
+        return $this->hasOne(Image::class);
     }
 }

@@ -26,4 +26,13 @@ class Image extends Model
         return $this->belongsTo(Resume::class);
 
     }
+
+            /**
+     * Get the resume associated with the user.
+     */
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+
+    }
 }

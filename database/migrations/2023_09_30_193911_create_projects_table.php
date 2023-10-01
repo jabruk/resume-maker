@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -11,17 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('github');
-            $table->json('category')->nullable();
-            $table->string('name');
+            $table->string('image');
             $table->unsignedBigInteger('resume_id');
-            $table->unsignedBigInteger('image_id');
+            $table->unsignedBigInteger('project_id');
             $table->timestamps();
 
-            $table->foreign('image_id')->references('id')->on('images')
-            ->onDelete('cascade');
+            $table->foreign('resume_id')->references('id')->on('resumes')
+                ->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')
+                ->onDelete('cascade');
+
         });
     }
 
@@ -30,6 +32,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('images');
     }
 };
+
+

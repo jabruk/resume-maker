@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ResumeStoreRequest;
+use App\Models\Project;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -60,11 +61,12 @@ class ResumeController extends Controller
             ],
             
         ];
+        $projects = Project::with('image')->get();
         return view('resume.edit', [
             'user' => $request->user(),
             'resume' => $request->user()->resume,
             'project' => [],
-            'items' => $items,
+            'projects' => $projects,
         ]);
     }
 

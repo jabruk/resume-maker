@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProjectController extends Controller
 {
@@ -31,20 +32,46 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+
         $project = new Project();
+        $data = [];
+        
         $imageName = time() . '.' . $request->image_project->extension();
         $request->image_project->move('img', $imageName);
         $finalImage = new Image();
         $finalImage->image = $imageName;
         $finalImage->resume_id = $request->resume_id;
         
-        $finalImage->save();
         
         
         $project->name =  $request->project_name;
         $project->github =  $request->project_link;
+        $project->resume_id =  $request->resume_id;
+        if($request->category0) {
+            $data[0] = $request->category0;
+        }
+        if($request->category1) {
+            $data[1] = $request->category1;
+        }
+        if($request->category2) {
+            $data[2] = $request->category2;
+        }
+        $project->category = ($data);
         
+        $project->save();
+        
+        
+        $finalImage->project_id =  $project->id;
+        $finalImage->save();
+        $projects = Project::with('image')->get();
+       
+        
+        return Redirect::route('resume.edit',  [
+            'user' => $request->user(),
+            'resume' => $request->user()->resume,
+            'projects' => $projects,
+        ])->with('status', 'resume-updated');
+
     }
 
     /**
