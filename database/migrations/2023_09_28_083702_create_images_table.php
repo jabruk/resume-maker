@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->foreign('resume_id')->references('id')->on('resumes')
                 ->onDelete('cascade');
+
         });
     }
 

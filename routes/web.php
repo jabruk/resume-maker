@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,15 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('resume', ResumeController::class);
+    Route::resource('project', ProjectController::class);
 
     Route::post('/image', [ImageController::class,'update'])->name('image.update');
 
    
 });
 
-Route::get('/project-editing', function () {
-    return view('components.project-editing');
-})->middleware(['auth', 'verified'])->name('project');
 
 // Route::get('/resume', [ResumeController::class, 'edit'])->name('resume.edit');
 // Route::patch('/resume', [ResumeController::class, 'update'])->name('resume.update');

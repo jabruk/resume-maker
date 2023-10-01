@@ -10,22 +10,16 @@
     </header>
 
 
-        <form action="{{ route('image.update', ['resume_id' => $resume->id]) }}"  method="POST" enctype="multipart/form-data">
+        <form action="{{ route('resume.edit', ['resume' => $resume]) }}"  method="POST" enctype="multipart/form-data">
             @csrf
   
-
-            
-
-
-
-
-
-
 
                 
                 <div class="flex flex-wrap -mx-4">
                   @foreach ($items as $item)
-                    <x-portfolio-item-edit :title="$item['title']"
+                    <x-portfolio-item-edit 
+                                      :id="1"
+                                      :title="$item['title']"
                                       :categories="$item['category']"
                                       :image="$item['image']"
                                       :github="$item['github']"></x-portfolio-item-edit>
@@ -39,21 +33,9 @@
 
 
 
-                   
                 <div class="flex items-center gap-4 pt-8">
-                    <x-primary-button>{{ __('Save') }}</x-primary-button>
-        
-                    @if (session('status') === 'resume-updated')
-                        <p
-                            x-data="{ show: true }"
-                            x-show="show"
-                            x-transition
-                            x-init="setTimeout(() => show = false, 2000)"
-                            class="text-sm text-gray-600 dark:text-gray-400"
-                        >{{ __('Saved.') }}</p>
-                    @endif
+                    <x-primary-button-link href="{{ route('project.create', ['resume' => $resume]) }}">{{ __('Create') }}</x-primary-button-link>
                 </div>
-       
         </form>
         
 </section>

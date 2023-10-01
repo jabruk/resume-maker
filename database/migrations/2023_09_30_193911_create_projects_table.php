@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('github');
+            $table->json('category')->nullable();
+            $table->string('name');
+            $table->unsignedBigInteger('resume_id');
+            $table->unsignedBigInteger('image_id');
             $table->timestamps();
+
+            $table->foreign('image_id')->references('id')->on('images')
+            ->onDelete('cascade');
         });
     }
 

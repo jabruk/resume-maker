@@ -52,6 +52,7 @@ class ResumeController extends Controller
     {
         $items = [
             [
+                'id' => 1,
                 'category' => ['Laravel', 'Tailwind.css'],
                 'title' => 'Full Stack app with Laravel, Tailwindcss',
                 'image' => url('/img/resume.png'),
@@ -62,6 +63,7 @@ class ResumeController extends Controller
         return view('resume.edit', [
             'user' => $request->user(),
             'resume' => $request->user()->resume,
+            'project' => [],
             'items' => $items,
         ]);
     }
