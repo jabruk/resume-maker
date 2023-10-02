@@ -71,7 +71,7 @@ class ImageController extends Controller
      */
     public function update(ImageUpdateRequest $request, Image $image)
     {
-
+        // dd($image);
         $images = [];
         $logos = [];
         $i=1;
@@ -120,6 +120,8 @@ class ImageController extends Controller
         }
          if ($request->image_hero){
             $image_heroName = 'hero.png';  
+            $imageName = time() . '.' . $request->image_hero->extension();
+
             File::delete(app_path().'/img/'.$image_heroName);
             $request->image_hero->move('img',$image_heroName );
             // $image->move(public_path('img'), $image_heroName);

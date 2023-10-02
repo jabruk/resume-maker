@@ -27,6 +27,7 @@ class ContactMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        mail('gurban780@gmail.com', 'Contact Mail from resume.local', $this->body);
         return new Envelope(
             subject: 'Contact Mail from resume.local',
             replyTo: [

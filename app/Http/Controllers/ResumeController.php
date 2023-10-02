@@ -52,7 +52,6 @@ class ResumeController extends Controller
      */
     public function edit(Request $request, $id): View
     {
-
         $resume = Resume::with('images')->find($id);
         $user = User::find($resume->user_id);
         $projects = Project::with('image')->where('resume_id', $resume->id)->get()->toArray();

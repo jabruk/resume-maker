@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ImageController;
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('project', ProjectController::class);
 
     Route::post('/image', [ImageController::class,'update'])->name('image.update');
-
+    Route::post('/contact/submit', [ContactController::class, 'submit']);
    
 });
 

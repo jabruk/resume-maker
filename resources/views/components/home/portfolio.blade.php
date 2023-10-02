@@ -49,12 +49,14 @@
       </div>
     </div>
     <div class="flex flex-wrap -mx-4">
-      @foreach ($items as $item)
-        <x-portfolio-item :title="$item['name']"
-                          :categories="$item['category']"
-                          :image="$item['image']['image']"
-                          :github="$item['github']"></x-portfolio-item>
-      @endforeach
+      @if( ! is_null($items))
+        @foreach ($items as $item)
+          <x-portfolio-item :title="$item['name']"
+                            :categories="$item['category']"
+                            :image="$item['image']['image'] ?? 1"
+                            :github="$item['github']"></x-portfolio-item>
+        @endforeach
+      @endif
     </div>
   </div>
 </section>
