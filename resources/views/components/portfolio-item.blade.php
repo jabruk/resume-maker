@@ -7,7 +7,7 @@
     <a href="{{$github}}" target="_blank">
       <div class="rounded-lg overflow-hidden ease-in duration-100 hover:scale-105">
         <img
-          src="{{ $image }}"
+          src="{{ asset('img/'.$image) }}" onerror="this.onerror=null;this.src='img/image.png';"
           alt="portfolio"
           class="w-full h-[260px] object-cover"
         />

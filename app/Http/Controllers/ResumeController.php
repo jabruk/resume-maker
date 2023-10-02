@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ResumeStoreRequest;
 use App\Models\Project;
 use App\Models\Resume;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -49,23 +50,15 @@ class ResumeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request, $id): View
     {
-        $items = [
-            [
-                'id' => 1,
-                'category' => ['Laravel', 'Tailwind.css'],
-                'title' => 'Full Stack app with Laravel, Tailwindcss',
-                'image' => url('/img/resume.png'),
-                'github' => 'https://github.com/sunjarred/tutorial'
-            ],
-            
-        ];
-        $projects = Project::with('image')->get();
+
+        $resume = Resume::with('images')->find($id);
+        $user = User::find($resume->user_id);
+        $projects = Project::with('image')->where('resume_id', $resume->id)->get()->toArray();
         return view('resume.edit', [
-            'user' => $request->user(),
-            'resume' => $request->user()->resume,
-            'project' => [],
+            'user' => $user,
+            'resume' => $resume,
             'projects' => $projects,
         ]);
     }

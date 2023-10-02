@@ -13,14 +13,14 @@
         <form action="{{ route('resume.edit', ['resume' => $resume]) }}"  method="POST" enctype="multipart/form-data">
             @csrf
   
-                <div class="flex flex-wrap -mx-4">
-                  @if (! is_null($projects))
-                  @foreach ($projects as $project)
+            <div class="flex flex-wrap -mx-4">
+                @if (! is_null($projects))
+                @foreach ($projects as $project)
                         <x-portfolio-item-edit 
-                                        :id="$project->id"
+                                        :id="$project['id']"
                                         :title="$project['name']"
                                         :categories="$project['category']"
-                                        :image="$project->getRelation('image')->image"
+                                        :image="$project['image']['image']"
                                         :github="$project['github']"></x-portfolio-item-edit>
                     @endforeach
                   @endif      

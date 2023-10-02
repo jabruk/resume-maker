@@ -96,7 +96,7 @@ class ImageController extends Controller
             }
         }
 
-        else if ($request->logos){
+         if ($request->logos){
             foreach($request->logos as $key => $logo)
             {
                 $logoName = 'logo'.$i.'.png';  
@@ -118,7 +118,7 @@ class ImageController extends Controller
 
 
         }
-        else if ($request->image_hero){
+         if ($request->image_hero){
             $image_heroName = 'hero.png';  
             File::delete(app_path().'/img/'.$image_heroName);
             $request->image_hero->move('img',$image_heroName );

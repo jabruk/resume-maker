@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Project;
+use App\Models\Resume;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 
 class ProjectController extends Controller
@@ -22,7 +25,8 @@ class ProjectController extends Controller
      */
     public function create(Request $request)
     {
-        return view('projects-component/edit', [
+        // $project =  Project::with(['image', 'resume'])->find($id);
+        return view('projects-component/create', [
             'resume' => $request->resume,
         ]);
     }
@@ -101,7 +105,45 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        dd($request,$project);
+        $project->name = $request->project_name;
+        $project->github = $request->project_link;
+        $data = [];
+
+        if($request->category0) {
+            $data[0] = $request->category0;
+        }
+        if($request->category1) {
+            $data[1] = $request->category1;
+        }
+        if($request->category2) {
+            $data[2] = $request->category2;
+        }
+        $project->category = ($data);
+        $project->resume_id =  $request->resume_id;
+
+        $project->save();
+        if($request->image_project) {
+            File::delete(app_path().'/img/'.$request->image);
+
+            $imageName = time() . '.' . $request->image_project->extension();
+            $request->image_project->move('img', $imageName);
+            $finalImage = new Image();
+            $finalImage->image = $imageName;
+            $finalImage->resume_id = $request->resume_id;
+            
+            $finalImage->project_id =  $project->id;
+            $finalImage->save();
+        }
+        $resume = Resume::find($request->resume_id);
+        $user = User::find($resume->user_id);
+        $projects = Project::with('image')->where('resume_id', $resume->id);
+        return Redirect::route('resume.edit',  [
+            'user' => $request->user(),
+            'resume' => $request->user()->resume,
+            'projects' => $projects,
+        ])->with('status', 'resume-updated');
+        
+
     }
 
     /**

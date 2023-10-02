@@ -50,9 +50,9 @@
     </div>
     <div class="flex flex-wrap -mx-4">
       @foreach ($items as $item)
-        <x-portfolio-item :title="$item['title']"
+        <x-portfolio-item :title="$item['name']"
                           :categories="$item['category']"
-                          :image="$item['image']"
+                          :image="$item['image']['image']"
                           :github="$item['github']"></x-portfolio-item>
       @endforeach
     </div>

@@ -11,14 +11,14 @@
           <div class="w-full xl:w-1/2 px-3 sm:px-4">
             <div class="py-3 sm:py-4">
               <img
-                src="{{ url('/img/logo1.png') }}"
+                src="{{ url('/img/logo1.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
             </div>
             <div class="py-3 sm:py-4">
               <img
-                src="{{ url('/img/logo2.png') }}"
+                src="{{ url('/img/logo2.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
@@ -27,28 +27,28 @@
           <div class="w-full xl:w-1/2 px-3 sm:px-4">
             <div class="my-4 relative z-10">
               <img
-                src="{{ url('/img/logo3.png') }}"
+                src="{{ url('/img/logo3.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
             </div>
             <div class="my-1 relative z-10">
               <img
-                src="{{ url('/img/logo4.png') }}"
+                src="{{ url('/img/logo4.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
             </div>
             <div class="py-3 sm:py-4">
               <img
-                src="{{ url('/img/logo8.png') }}"
+                src="{{ url('/img/logo8.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
             </div>
             <div class="my-4 relative z-10">
               <img
-                src="{{ url('/img/logo5.png') }}"
+                src="{{ url('/img/logo5.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
@@ -57,14 +57,14 @@
           <div class="w-full xl:w-1/2 px-3 sm:px-4">
             <div class="py-3 sm:py-4">
               <img
-                src="{{ url('/img/logo6.png') }}"
+                src="{{ url('/img/logo6.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
             </div>
             <div class="py-3 sm:py-4">
               <img
-                src="{{ url('/img/logo7.png') }}"
+                src="{{ url('/img/logo7.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
                 alt=""
                 class="rounded-2xl w-full animate-wiggle animate-infinite animate-ease-in-out"
               />
