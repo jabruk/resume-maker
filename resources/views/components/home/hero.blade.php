@@ -1,5 +1,8 @@
 <!-- ====== Hero Section Start -->
 @if(Auth::user() !== null)
+<div class="hidden">
+{{{ $image = \App\Models\Image::where(['resume_id' => Auth::user()->resume->id, 'image_name' => 'hero'])->first()}}}
+</div>
 <div class="relative pt-[60px] lg:pt-[80px] pb-[110px] bg-white dark:bg-slate-800">
     <div class="container">
       <div class="flex flex-wrap -mx-4">
@@ -20,7 +23,6 @@
                 
                 for offers :)
                  <br> -->
-
                  {{Auth::user()->resume->introduction_text}}
             </p>
             <ul class="flex flex-wrap items-center">
@@ -43,11 +45,20 @@
         <div class="w-full lg:w-6/12 px-4">
           <div class="lg:text-right lg:ml-auto">
             <div class="relative inline-block z-10 pt-11 lg:pt-0">
+              @if(isset($image) && $image->image)
+              <!-- onerror="this.onerror=null;this.src='img/image.png';" -->
               <img
-                src="{{ asset('img/hero.png')}}"  onerror="this.onerror=null;this.src='img/image.png';"
+                src="{{ asset('img/'.$image->image)}}"  
                 alt="hero"
                 class="w-4/5 lg:ml-auto rounded-[70px]"
               />
+              @else
+              <img
+                src="{{ asset('img/image.png')}}"  
+                alt="hero"
+                class="w-4/5 lg:ml-auto rounded-[70px]"
+              />
+              @endif
               <span class="absolute -left-13 -bottom-6 z-[-1]">
                 <svg
                   width="93"

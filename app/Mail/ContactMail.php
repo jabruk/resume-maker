@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class ContactMail extends Mailable
 {
@@ -27,11 +28,21 @@ class ContactMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        mail('gurban780@gmail.com', 'Contact Mail from resume.local', $this->body);
+        // $data = array('name'=>"Virat Gandhi");
+        
+
+
+        // dd(Mail::send(['text'=>'mail'], $data, function($message) {
+        //     $message->to('gurban780@gmail.com', 'Tutorials Point')->subject
+        //         ('Laravel Basic Testing Mail');
+        //     $message->from('sanjar.evil@gmail.com','Virat Gandhi');
+        // }));
+
+        // dd(mail($to, $subject, $message, $headers));
         return new Envelope(
             subject: 'Contact Mail from resume.local',
             replyTo: [
-                new Address($this->email),
+                new Address('gurban780@gmail.com'),
             ],
         );
     }
@@ -43,6 +54,9 @@ class ContactMail extends Mailable
     {
         return new Content(
             view: 'email.contact',
+            with: [
+                'name' => $this->name,
+            ],
         );
     }
 

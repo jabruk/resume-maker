@@ -5,6 +5,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProjectController;
+use App\Mail\ContactMail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +42,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/image', [ImageController::class,'update'])->name('image.update');
     Route::post('/contact/submit', [ContactController::class, 'submit']);
+    Route::post('/contact/submit', function (Request $request){
+        Mail::to(Auth::user()->email)->send(new ContactMail($request->name,$request->email,$request->message));
+
+    });
    
 });
 

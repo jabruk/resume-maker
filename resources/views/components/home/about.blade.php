@@ -1,20 +1,87 @@
 <!-- ====== About Section Start -->
 <section id="about" class="dark:bg-slate-800 pt-20 lg:pt-[120px] pb-12 lg:pb-[90px] overflow-hidden">
+<div class="hidden">
+            {{{  $me = \App\Models\Image::where(['resume_id' => Auth::user()->resume->id, 'image_name' => 'me'])->get() }}}
+        </div>
     <div class="container">
       <div class="flex flex-wrap justify-between items-center -mx-4">
+
+      @for($me = $me->toArray(), $i = 0; $i < sizeof( $me) ;$i++)
         <div class="w-full lg:w-6/12 px-4">
           <div class="flex items-center -mx-3 sm:-mx-4">
             <div class="w-full xl:w-1/2 px-3 sm:px-4">
               <div class="py-3 sm:py-4">
+                @if($me[$i]['logo'] == 'me'.$i)
+                
                 <img
-                  src="{{ asset('/img/me1.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
+                src="{{ asset('/img/'.$me[$i]['image']) }}"
+                alt=""
+                  class="rounded-2xl w-full"
+                />
+                @else
+                    <img src="{{ url('/img/image.png') }}" alt=""
+                    class="rounded-2xl w-full" />
+                @endif
+              </div>
+              <div class="hidden">{{$i++;}}</div>
+              
+              <div class="py-3 sm:py-4">
+                @if($i < sizeof($me) && $me[$i]['logo'] == 'me'.$i)
+
+                <img
+                  src="{{ asset('/img/'.$me[$i]['image']) }}"
+                  alt=""
+                  class="rounded-2xl w-full"
+                />
+              @else
+                  <img 
+                  src="{{ url('/img/image.png') }}" alt=""
+                  class="rounded-2xl w-full" />
+              @endif
+              </div>
+            </div>
+            <div class="hidden">{{$i++;}}</div>
+            
+            <div class="w-full xl:w-1/2 px-3 sm:px-4">
+              <div class="my-4 relative z-10">
+              @if($i < sizeof($me) && $me[$i]['logo'] == 'me'.$i)
+                <img
+                  src="{{ asset('/img/'.$me[$i]['image']) }}"
+                  alt=""
+                  class="rounded-2xl w-full"
+                />
+              @else
+                  <img src="{{ url('/img/image.png') }}" alt=""
+                  class="rounded-2xl w-full" />
+              @endif
+
+              <x-about-dots></x-about-dots>
+            </div>
+          </div>
+        </div>
+      </div>
+      @break
+      @endfor
+
+
+
+
+
+      @if(empty($me)) 
+      <div class="w-full lg:w-6/12 px-4">
+          <div class="flex items-center -mx-3 sm:-mx-4">
+            <div class="w-full xl:w-1/2 px-3 sm:px-4">
+              <div class="py-3 sm:py-4">
+                <img
+                  src="{{ asset('/img/image.png') }}"
                   alt=""
                   class="rounded-2xl w-full"
                 />
               </div>
               <div class="py-3 sm:py-4">
                 <img
-                  src="{{ asset('/img/me3.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
+                src="{{ asset('/img/image.png') }}"
+
                   alt=""
                   class="rounded-2xl w-full"
                 />
@@ -23,7 +90,7 @@
             <div class="w-full xl:w-1/2 px-3 sm:px-4">
               <div class="my-4 relative z-10">
                 <img
-                  src="{{ asset('/img/me2.png') }}" onerror="this.onerror=null;this.src='img/image.png';"
+                src="{{ asset('/img/image.png') }}"
                   alt=""
                   class="rounded-2xl w-full"
                 />
@@ -32,6 +99,20 @@
             </div>
           </div>
         </div>
+      @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="w-full lg:w-1/2 xl:w-5/12 px-4">
           <div class="mt-10 lg:mt-0">
             <span class="font-semibold text-lg text-primary mb-2 block">

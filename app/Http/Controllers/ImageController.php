@@ -72,45 +72,103 @@ class ImageController extends Controller
     public function update(ImageUpdateRequest $request, Image $image)
     {
         // dd($image);
-        $images = [];
+        $imagesSave = [];
         $logos = [];
         $i=1;
         if ($request->images){
-            foreach($request->images as $key => $image)
-            {
-                $imageName = 'me'.$i.'.png';  
-                File::delete(app_path().'/img/'.$imageName);
-                // $image->move(public_path('images'), $imageName);
-                $image->move('img',$imageName );
-                $images[$key]['name'] = $imageName;
-                $images[$key]['resume_id'] = $request->resume_id;
-                $i++;
-            }
+            // foreach($request->images as $key => $image)
+            // {
+            //     $imageName = 'me'.$i.'.png';  
+            //     File::delete(app_path().'/img/'.$imageName);
+            //     // $image->move(public_path('images'), $imageName);
+            //     $image->move('img',$imageName );
+            //     $images[$key]['name'] = $imageName;
+            //     $images[$key]['resume_id'] = $request->resume_id;
+            //     $i++;
+            // }
             
-            foreach ($images as $key => $image) {
+            // foreach ($images as $key => $image) {
+            //     $finalImage = new Image();
+            //     $finalImage->image = $image['name'];
+            //     $finalImage->resume_id = $image['resume_id'];
+                
+            //     $finalImage->save();
+            // }
+
+
+            $imageArr = Image::where(['resume_id' => $request->resume_id, 'image_name' => 'me'])->get();
+            $i = 0;
+
+            foreach($request->images as $key => $images)
+            {
+                $meName = 'me';  
+                $desired_image = $imageArr->filter(function($item, $key) {
+                    return $item->logo == 'me' . $key;
+                })->first()
+                ;
+                if(isset($desired_image) && $desired_image->logo == $meName . $i) {
+
+                    File::delete(app_path().'/img/'.$desired_image->image);
+                }
+                $imageName = microtime() . '.' . $images->extension();
+
+
+
+                $images->move('img',$imageName );
+                $imagesSave[$key]['name'] = $meName;
+                $imagesSave[$key]['image'] = $imageName;
+                $imagesSave[$key]['logo'] = $meName . $i;
+                $imagesSave[$key]['resume_id'] = $request->resume_id;
+                $i++;
+
+            }   
+            $imageArr->map->delete();
+            foreach ($imagesSave as $key => $image) {
                 $finalImage = new Image();
-                $finalImage->image = $image['name'];
+                $finalImage->image_name = $image['name'];
+                $finalImage->image = $image['image'];
+                $finalImage->logo = $image['logo'];
                 $finalImage->resume_id = $image['resume_id'];
                 
                 $finalImage->save();
             }
-        }
 
+        }
          if ($request->logos){
+            
+
+            $logoArr = Image::where(['resume_id' => $request->resume_id, 'image_name' => 'logo'])->get();
+            $i = 0;
+
             foreach($request->logos as $key => $logo)
             {
-                $logoName = 'logo'.$i.'.png';  
-                File::delete(app_path().'/img/'.$logoName);
-                $logo->move('img',$logoName );
+                $logoName = 'logo';  
+                $desired_image = $logoArr->filter(function($item, $key) {
+                    return $item->logo == 'logo' . $key;
+                })->first()
+                ;
+                if(isset($desired_image) && $desired_image->logo == $logoName . $i) {
+
+                    File::delete(app_path().'/img/'.$desired_image->image);
+                }
+                $imageName = microtime() . '.' . $logo->extension();
+
+
+
+                $logo->move('img',$imageName );
                 $logos[$key]['name'] = $logoName;
+                $logos[$key]['image'] = $imageName;
+                $logos[$key]['logo'] = $logoName . $i;
                 $logos[$key]['resume_id'] = $request->resume_id;
                 $i++;
 
-            }
-
+            }   
+            $logoArr->map->delete();
             foreach ($logos as $key => $image) {
                 $finalImage = new Image();
-                $finalImage->image = $image['name'];
+                $finalImage->image_name = $image['name'];
+                $finalImage->image = $image['image'];
+                $finalImage->logo = $image['logo'];
                 $finalImage->resume_id = $image['resume_id'];
                 
                 $finalImage->save();
@@ -119,15 +177,17 @@ class ImageController extends Controller
 
         }
          if ($request->image_hero){
-            $image_heroName = 'hero.png';  
-            $imageName = time() . '.' . $request->image_hero->extension();
+            Image::where(['resume_id' => $request->resume_id,'image_name' => 'hero'])->delete();
+            $image_heroName = 'hero';  
+            $imageName = microtime() . '.' . $request->image_hero->extension();
 
-            File::delete(app_path().'/img/'.$image_heroName);
-            $request->image_hero->move('img',$image_heroName );
+            // File::delete(app_path().'/img/'.$imageName);
+            $request->image_hero->move('img',$imageName );
             // $image->move(public_path('img'), $image_heroName);
             // Storage::disk('public_uploads')->put('img', $hero);
             $finalImage = new Image();
-            $finalImage->image = $image_heroName;
+            $finalImage->image = $imageName;
+            $finalImage->image_name = $image_heroName;
             $finalImage->resume_id = $request->resume_id;
             $finalImage->save();
         }
